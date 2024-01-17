@@ -1,0 +1,87 @@
+[0/1] Re-running CMake...
+-- ccache will be used for faster recompilation
+-- Building ESP-IDF components for target esp32s3
+Processing 3 dependencies:
+[1/3] espressif/esp-dsp (1.4.10)
+[2/3] espressif/esp_codec_dev (1.0.3)
+[3/3] idf (5.1.2)
+-- Project sdkconfig file C:/Users/pc/Desktop/DFR0715/DFR0715_FW/sdkconfig
+-- App "DFR0715_FW" version: 418fb4d-dirty
+-- Adding linker script C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/ld/esp32s3/sections.ld.in
+-- Adding linker script D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script D:/Espressif/frameworks/esp-idf-v5.1.2/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump espressif__esp-dsp espressif__esp-sr espressif__esp_codec_dev esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table perfmon protobuf-c protocomm pthread sdmmc soc spi_flash spiffs tcp_transport touch_element ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: D:/Espressif/frameworks/esp-idf-v5.1.2/components/app_trace D:/Espressif/frameworks/esp-idf-v5.1.2/components/app_update D:/Espressif/frameworks/esp-idf-v5.1.2/components/bootloader D:/Espressif/frameworks/esp-idf-v5.1.2/components/bootloader_support D:/Espressif/frameworks/esp-idf-v5.1.2/components/bt D:/Espressif/frameworks/esp-idf-v5.1.2/components/cmock D:/Espressif/frameworks/esp-idf-v5.1.2/components/console D:/Espressif/frameworks/esp-idf-v5.1.2/components/cxx D:/Espressif/frameworks/esp-idf-v5.1.2/components/driver D:/Espressif/frameworks/esp-idf-v5.1.2/components/efuse D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp-tls D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_adc D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_app_format D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_coex D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_common D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_eth D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_event D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_gdbstub D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_hid D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_http_client D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_http_server D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_https_ota D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_https_server D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_hw_support D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_lcd D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_local_ctrl D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_mm D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_netif D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_netif_stack D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_partition D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_phy D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_pm D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_psram D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_ringbuf D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_rom D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_timer D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_wifi D:/Espressif/frameworks/esp-idf-v5.1.2/components/espcoredump C:/Users/pc/Desktop/DFR0715/DFR0715_FW/managed_components/espressif__esp-dsp C:/Users/pc/Desktop/DFR0715/DFR0715_FW/components/espressif__esp-sr C:/Users/pc/Desktop/DFR0715/DFR0715_FW/managed_components/espressif__esp_codec_dev D:/Espressif/frameworks/esp-idf-v5.1.2/components/esptool_py D:/Espressif/frameworks/esp-idf-v5.1.2/components/fatfs D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos D:/Espressif/frameworks/esp-idf-v5.1.2/components/hal D:/Espressif/frameworks/esp-idf-v5.1.2/components/heap D:/Espressif/frameworks/esp-idf-v5.1.2/components/http_parser D:/Espressif/frameworks/esp-idf-v5.1.2/components/idf_test D:/Espressif/frameworks/esp-idf-v5.1.2/components/ieee802154 D:/Espressif/frameworks/esp-idf-v5.1.2/components/json D:/Espressif/frameworks/esp-idf-v5.1.2/components/log D:/Espressif/frameworks/esp-idf-v5.1.2/components/lwip C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main D:/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls D:/Espressif/frameworks/esp-idf-v5.1.2/components/mqtt D:/Espressif/frameworks/esp-idf-v5.1.2/components/newlib D:/Espressif/frameworks/esp-idf-v5.1.2/components/nvs_flash D:/Espressif/frameworks/esp-idf-v5.1.2/components/openthread D:/Espressif/frameworks/esp-idf-v5.1.2/components/partition_table D:/Espressif/frameworks/esp-idf-v5.1.2/components/perfmon D:/Espressif/frameworks/esp-idf-v5.1.2/components/protobuf-c D:/Espressif/frameworks/esp-idf-v5.1.2/components/protocomm D:/Espressif/frameworks/esp-idf-v5.1.2/components/pthread D:/Espressif/frameworks/esp-idf-v5.1.2/components/sdmmc D:/Espressif/frameworks/esp-idf-v5.1.2/components/soc D:/Espressif/frameworks/esp-idf-v5.1.2/components/spi_flash D:/Espressif/frameworks/esp-idf-v5.1.2/components/spiffs D:/Espressif/frameworks/esp-idf-v5.1.2/components/tcp_transport D:/Espressif/frameworks/esp-idf-v5.1.2/components/touch_element D:/Espressif/frameworks/esp-idf-v5.1.2/components/ulp D:/Espressif/frameworks/esp-idf-v5.1.2/components/unity D:/Espressif/frameworks/esp-idf-v5.1.2/components/usb D:/Espressif/frameworks/esp-idf-v5.1.2/components/vfs D:/Espressif/frameworks/esp-idf-v5.1.2/components/wear_levelling D:/Espressif/frameworks/esp-idf-v5.1.2/components/wifi_provisioning D:/Espressif/frameworks/esp-idf-v5.1.2/components/wpa_supplicant D:/Espressif/frameworks/esp-idf-v5.1.2/components/xtensa
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build
+[1/1049] Generating memory.ld linker script...
+[2/1049] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj
+[3/1049] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash_config_esp32s3.c.obj
+[4/1049] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj
+[5/1049] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/flash_qio_mode.c.obj
+[6/1049] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj
+[7/1049] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32s3/clk.c.obj
+[8/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/platform.c.obj
+[9/1049] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash.c.obj
+[10/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto.c.obj
+[11/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_aead.c.obj
+[12/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_cipher.c.obj
+[13/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_ecp.c.obj
+[14/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pkwrite.c.obj
+[15/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/poly1305.c.obj
+[16/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/platform_util.c.obj
+[17/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_client.c.obj
+[18/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_pake.c.obj
+[19/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_ffdh.c.obj
+[20/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_hash.c.obj
+[21/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_slot_management.c.obj
+[22/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_rsa.c.obj
+[23/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_mac.c.obj
+[24/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_driver_wrappers_no_static.c.obj
+[25/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_se.c.obj
+[26/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_util.c.obj
+[27/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_its_file.c.obj
+[28/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_storage.c.obj
+[29/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha1.c.obj
+[30/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha512.c.obj
+[31/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha256.c.obj
+[32/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/rsa.c.obj
+[33/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ripemd160.c.obj
+[34/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/timing.c.obj
+[35/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/threading.c.obj
+[36/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/sha/dma/esp_sha_gdma_impl.c.obj
+[37/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/version.c.obj
+[38/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/sha3.c.obj
+[39/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/aes/dma/esp_aes_gdma_impl.c.obj
+[40/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/rsa_alt_helpers.c.obj
+[41/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/version_features.c.obj
+[42/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/sha/dma/sha.c.obj
+[43/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/aes/esp_aes_xts.c.obj
+[44/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/crypto_shared_gdma/esp_crypto_shared_gdma.c.obj
+[45/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/esp32s3/bignum.c.obj
+[46/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/aes/esp_aes_common.c.obj
+[47/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/esp_hardware.c.obj
+[48/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/esp_mem.c.obj
+[49/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/esp_timing.c.obj
+[50/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/aes/dma/esp_aes.c.obj
+[51/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/sha/esp_sha.c.obj
+[52/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/sha/dma/esp_sha256.c.obj
+[53/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/aes/esp_aes_gcm.c.obj
+[54/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/esp_ds/esp_rsa_sign_alt.c.obj
+[55/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/sha/dma/esp_sha1.c.obj
+[56/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/sha/dma/esp_sha512.c.obj
+[57/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/esp_bignum.c.obj
+[58/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509.c.obj
+[59/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_reader.c.obj
+[60/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crl.c.obj
+[61/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_crt.c.obj
+[62/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_create.c.obj
+[63/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/D_/Espressif/frameworks/esp-idf-v5.1.2/components/mbedtls/port/md/esp_md.c.obj
+[64/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/pkcs7.c.obj
+[65/1049] Building C object esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_csr.c.obj

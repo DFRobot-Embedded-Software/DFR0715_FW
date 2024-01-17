@@ -1,0 +1,240 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3818,len:0x18dc
+load:0x403c9700,len:0x4
+load:0x403c9704,len:0xda4
+load:0x403cc700,len:0x3084
+entry 0x403c9934
+[0;32mI (27) boot: ESP-IDF v5.1.2 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Jan 12 2024 11:00:01[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v0.2[0m
+[0;32mI (34) qio_mode: Enabling QIO for flash chip WinBond[0m
+[0;32mI (39) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (44) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (49) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (54) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (63) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 factory          factory app      00 00 00010000 00200000[0m
+[0;32mI (77) boot:  1 model            Unknown data     01 82 00210000 00800000[0m
+[0;32mI (85) boot: End of partition table[0m
+[0;32mI (89) esp_image: segment 0: paddr=00010020 vaddr=3c070020 size=23b48h (146248) map[0m
+[0;32mI (120) esp_image: segment 1: paddr=00033b70 vaddr=3fc99b00 size=053c0h ( 21440) load[0m
+[0;32mI (124) esp_image: segment 2: paddr=00038f38 vaddr=40378000 size=070e0h ( 28896) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=6ea94h (453268) map[0m
+[0;32mI (203) esp_image: segment 4: paddr=000aeabc vaddr=4037f0e0 size=0a918h ( 43288) load[0m
+[0;32mI (219) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (219) boot: Disabling RNG early entropy source...[0m
+[0;32mI (230) cpu_start: Multicore app[0m
+[0;32mI (231) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (231) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (234) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (240) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (245) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (250) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (255) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (261) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (267) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (272) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (279) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (284) MSPI Timing: PSRAM timing tuning index: 11[0m
+[0;32mI (289) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (294) esp_psram: Speed: 80MHz[0m
+[0;32mI (298) cpu_start: Pro cpu up.[0m
+[0;32mI (301) cpu_start: Starting app cpu, entry point is 0x40379594[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (629) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (638) cpu_start: Pro cpu start user code[0m
+[0;32mI (638) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (638) cpu_start: Application information:[0m
+[0;32mI (641) cpu_start: Project name:     DFR0715_FW[0m
+[0;32mI (646) cpu_start: App version:      1[0m
+[0;32mI (651) cpu_start: Compile time:     Jan 16 2024 14:06:31[0m
+[0;32mI (657) cpu_start: ELF file SHA256:  7baf61e8133c6cc8...[0m
+[0;32mI (663) cpu_start: ESP-IDF:          v5.1.2[0m
+[0;32mI (668) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (672) cpu_start: Max chip rev:     v0.99 [0m
+[0;32mI (677) cpu_start: Chip rev:         v0.2[0m
+[0;32mI (682) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (689) heap_init: At 3FC9FD40 len 000499D0 (294 KiB): DRAM[0m
+[0;32mI (695) heap_init: At 3FCE9710 len 00005724 (21 KiB): STACK/DRAM[0m
+[0;32mI (702) heap_init: At 600FE010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (708) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (716) spi_flash: detected chip: winbond[0m
+[0;32mI (720) spi_flash: flash io: qio[0m
+[0;32mI (724) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (731) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (738) app_start: Starting scheduler on CPU0[0m
+[0;32mI (743) app_start: Starting scheduler on CPU1[0m
+[0;32mI (743) main_task: Started on CPU0[0m
+[0;32mI (753) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (763) main_task: Calling app_main()[0m
+[0;32mI (1263) I2S_IF: channel mode 0 bits:32/32 channel:2 mask:3[0m
+[0;32mI (1263) I2S_IF: STD Mode 0 bits:32/32 channel:2 sample_rate:16000 mask:3[0m
+[0;32mI (1273) Adev_Codec: Open codec device OK[0m
+[0;32mI (1273) MODEL_LOADER: The storage free size is 23936 KB[0m
+[0;32mI (1283) MODEL_LOADER: The partition size is 8192 KB[0m
+[0;32mI (1283) MODEL_LOADER: Successfully map model partition[0m
+[0;32mI (1293) AFE_SR: afe interface for speech recognition
+[0m
+[0;32mI (1293) AFE_SR: AFE version: SR_V220727
+[0m
+[0;32mI (1303) AFE_SR: Initial auido front-end, total channel: 3, mic num: 2, ref num: 1
+[0m
+[0;32mI (1313) AFE_SR: aec_init: 1, se_init: 1, vad_init: 1
+[0m
+[0;32mI (1313) AFE_SR: wakenet_init: 1
+[0m
+MC Quantized wakenet9: wakenet9_v1h24_hilexin_3_0.608_0.615, tigger:v3, mode:2, p:0, (Aug 24 2023 11:56:47)
+[0;32mI (1563) AFE_SR: wake num: 3, mode: 0, (Aug 24 2023 11:56:48)
+[0m
+Build fst from commands.
+Quantized MultiNet6:rnnt_ctc_1.0, name:mn6_cn, (Aug 24 2023 14:24:02)
+Load 1 pre-defined speech commands.
+Quantized MultiNet6 search method: 2, time out:6.0 s
+1 active speech commands:
+Command 300:  ba xiao shi hou guan ji
+[0;32mI (1923) gpio: GPIO[11]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (1923) gpio: GPIO[42]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (1933) gpio: GPIO[38]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:1 [0m
+[0;32mI (1933) main_task: Returned from app_main()[0m
+Build fst from commands.
+Quantized MultiNet6:rnnt_ctc_1.0, name:mn6_cn, (Aug 24 2023 14:24:02)
+Load 1 pre-defined speech commands.
+Quantized MultiNet6 search method: 2, time out:6.0 s
+1 active speech commands:
+Command 300:  ba xiao shi hou guan ji
+No commands availabel, not updating.
+[0;32mI (7693) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+1 active speech commands:
+Command 300:  ba xiao shi hou guan ji
+[0;32mI (7703) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 1; length = 29; str = jing tian tian qi zen m
+No commands availabel, not updating.
+[0;32mI (8713) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+1 active speech commands:
+Command 300:  ba xiao shi hou guan ji
+[0;32mI (8733) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 1; length = 29; str = e yang
+Build fst from commands.
+[0;32mI (9213) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+1 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+[0;32mI (9213) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 2; length = 19; str = ming tian you yu ma
+Build fst from commands.
+[0;32mI (9783) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+2 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+[0;32mI (9793) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 3; length = 35; str = she zhi ming tian qi di
+Build fst from commands.
+[0;32mI (10353) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+2 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+[0;32mI (10363) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 3; length = 35; str = an nao zhong
+Build fst from commands.
+[0;32mI (10863) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+3 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+Command 3:  she zhi ming tian qi dian nao zhong
+[0;32mI (10873) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------DEL_CMD_BY_STR_REG------------length = 35; str = she zhi ming tian qi di
+Build fst from commands.
+[0;32mI (11413) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+3 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+Command 3:  she zhi ming tian qi dian nao zhong
+[0;32mI (11423) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------DEL_CMD_BY_STR_REG------------length = 35; str = an nao zhong
+Build fst from commands.
+[0;32mI (11913) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+2 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+[0;32mI (11923) MN_COMMAND: ---------------------------------------------------------
+[0m
+Build fst from commands.
+Quantized MultiNet6:rnnt_ctc_1.0, name:mn6_cn, (Aug 24 2023 14:24:02)
+Load 1 pre-defined speech commands.
+Quantized MultiNet6 search method: 2, time out:6.0 s
+1 active speech commands:
+Command 300:  ba xiao shi hou guan ji
+No commands availabel, not updating.
+[0;32mI (23463) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+1 active speech commands:
+Command 300:  ba xiao shi hou guan ji
+[0;32mI (23463) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 1; length = 29; str = jing tian tian qi zen m
+No commands availabel, not updating.
+[0;32mI (24473) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+1 active speech commands:
+Command 300:  ba xiao shi hou guan ji
+[0;32mI (24493) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 1; length = 29; str = e yang
+Build fst from commands.
+[0;32mI (24993) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+1 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+[0;32mI (24993) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 2; length = 19; str = ming tian you yu ma
+Build fst from commands.
+[0;32mI (25563) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+2 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+[0;32mI (25583) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 3; length = 35; str = she zhi ming tian qi di
+Build fst from commands.
+[0;32mI (26103) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+2 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+[0;32mI (26113) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------ADD_CMD_REG------------id = 3; length = 35; str = an nao zhong
+Build fst from commands.
+[0;32mI (26623) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+3 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+Command 3:  she zhi ming tian qi dian nao zhong
+[0;32mI (26653) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------DEL_CMD_BY_STR_REG------------length = 35; str = she zhi ming tian qi di
+Build fst from commands.
+[0;32mI (27183) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+3 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+Command 3:  she zhi ming tian qi dian nao zhong
+[0;32mI (27193) MN_COMMAND: ---------------------------------------------------------
+[0m
+------------DEL_CMD_BY_STR_REG------------length = 35; str = an nao zhong
+Build fst from commands.
+[0;32mI (27673) MN_COMMAND: ---------------------ACTIVE SPEECH COMMANDS---------------------[0m
+2 active speech commands:
+Command 1:  jing tian tian qi zen me yang
+Command 2:  ming tian you yu ma
+[0;32mI (27693) MN_COMMAND: ---------------------------------------------------------
+[0m

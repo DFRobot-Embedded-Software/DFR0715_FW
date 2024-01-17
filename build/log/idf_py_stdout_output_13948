@@ -1,0 +1,60 @@
+[1/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+[2/7] Linking C static library esp-idf\main\libmain.a
+[3/7] Generating ld/sections.ld
+[4/7] Linking CXX executable DFR0715_FW.elf
+[5/7] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build/DFR0715_FW.bin
+[6/7] cmd.exe /C "cd /D C:\Users\pc\Desktop\DFR0715\DFR0715_FW\build\esp-idf\esptool_py && D:\Espressif\python_env\idf5.1_py3.11_env\Scripts\python.exe D:/Espressif/frameworks/esp-idf-v5.1.2/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build/partition_table/partition-table.bin C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build/DFR0715_FW.bin"
+DFR0715_FW.bin binary size 0xa95c0 bytes. Smallest app partition is 0x200000 bytes. 0x156a40 bytes (67%) free.
+[6/7] cmd.exe /C "cd /D D:\Espressif\frameworks\esp-idf-v5.1.2\components\esptool_py && D:\Espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=D:/Espressif/frameworks/esp-idf-v5.1.2 -D SERIAL_TOOL=D:/Espressif/python_env/idf5.1_py3.11_env/Scripts/python.exe;;D:/Espressif/frameworks/esp-idf-v5.1.2/components/esptool_py/esptool/esptool.py;--chip;esp32s3 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@app-flash_args -D WORKING_DIRECTORY=C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build -P D:/Espressif/frameworks/esp-idf-v5.1.2/components/esptool_py/run_serial_tool.cmake"
+esptool.py --chip esp32s3 -p com26 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 16MB 0x10000 DFR0715_FW.bin
+esptool.py v4.7.0
+Serial port com26
+Connecting...
+Failed to get PID of a device on com26, using standard reset sequence.
+
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 80:65:99:a0:e0:18
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00010000 to 0x000b9fff...
+Compressed 693696 bytes to 389549...
+Writing at 0x00010000... (4 %)
+Writing at 0x0001ad39... (8 %)
+Writing at 0x00025bce... (12 %)
+Writing at 0x0002a729... (16 %)
+Writing at 0x00034746... (20 %)
+Writing at 0x0003c901... (25 %)
+Writing at 0x000427a2... (29 %)
+Writing at 0x000489a8... (33 %)
+Writing at 0x0004e78f... (37 %)
+Writing at 0x000544be... (41 %)
+Writing at 0x00059b1a... (45 %)
+Writing at 0x0005f364... (50 %)
+Writing at 0x00065079... (54 %)
+Writing at 0x0006a9cf... (58 %)
+Writing at 0x0006fef0... (62 %)
+Writing at 0x00078f2b... (66 %)
+Writing at 0x0007ff4d... (70 %)
+Writing at 0x00086020... (75 %)
+Writing at 0x0008c446... (79 %)
+Writing at 0x00092819... (83 %)
+Writing at 0x000980a6... (87 %)
+Writing at 0x000a0b76... (91 %)
+Writing at 0x000aebcf... (95 %)
+Writing at 0x000b4700... (100 %)
+Wrote 693696 bytes (389549 compressed) at 0x00010000 in 8.8 seconds (effective 632.7 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

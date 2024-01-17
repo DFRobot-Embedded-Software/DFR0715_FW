@@ -1,0 +1,27 @@
+dependencies:
+  espressif/esp-dsp:
+    component_hash: 46498b4973097cac29cfc6a692abef44375ffb7b00b73b3f354124efc626a154
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 1.4.10
+  espressif/esp_codec_dev:
+    component_hash: bfa92c177f836be5847e4a4248349267614500e1e0728c4939e51a73746b8918
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 1.0.3
+  espressif__esp-sr:
+    component_hash: null
+    source:
+      path: C:\Users\pc\Desktop\DFR0715\DFR0715_FW\components\espressif__esp-sr
+      type: local
+    version: 1.4.2
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 5.1.2
+manifest_hash: 30b65417a2b235df15241c173711925b129c0f902c21f45defac3c38a1ff84d5
+target: esp32s3
+version: 1.0.0

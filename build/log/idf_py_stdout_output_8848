@@ -1,0 +1,7 @@
+[0/1] Re-running CMake...
+-- ccache will be used for faster recompilation
+-- Building ESP-IDF components for target esp32s3
+-- Configuring incomplete, errors occurred!
+See also "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build/CMakeFiles/CMakeOutput.log".
+FAILED: build.ninja 
+D:\Espressif\tools\cmake\3.24.0\bin\cmake.exe --regenerate-during-build -SC:\Users\pc\Desktop\DFR0715\DFR0715_FW -BC:\Users\pc\Desktop\DFR0715\DFR0715_FW\build

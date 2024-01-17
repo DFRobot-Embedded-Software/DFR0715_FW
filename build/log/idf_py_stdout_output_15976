@@ -1,0 +1,3 @@
+[1/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+[2/7] Linking C static library esp-idf\main\libmain.a
+[3/7] Generating ld/sections.ld

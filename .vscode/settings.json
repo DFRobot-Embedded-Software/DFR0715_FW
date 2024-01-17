@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "harddevinit.h": "c",
+        "main.h": "c",
+        "esp_process_sdkconfig.h": "c",
+        "esp_codec_dev_defaults.h": "c"
+    }
+}

@@ -1,0 +1,21 @@
+[0;33m--- esp-idf-monitor 1.3.4 on com26 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0;33m0x4201c343: model_detect at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1504
+[0m
+[0;33m0x420651e9: WebRtcSpl_GetScalingSquare at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/esp_audio_processor/common_audio/signal_processing/get_scaling_square.c:34
+[0m
+[0;33m0x42065202: WebRtcSpl_GetScalingSquare at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/esp_audio_processor/common_audio/signal_processing/get_scaling_square.c:37
+[0m
+[0;33m0x4201c340: model_detect at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1497
+[0m
+[0;33m0x42009bd1: detect_Task at C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/main.c:417
+[0m
+[0;33m0x40383a79: vPortTaskWrapper at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:162
+[0m
+[0;33m0x40384197: _xt_context_save at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/xtensa_context.S:193
+[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0m

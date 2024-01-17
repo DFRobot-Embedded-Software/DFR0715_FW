@@ -1,0 +1,23 @@
+CMake Error at D:/Espressif/frameworks/esp-idf-v5.1.2/tools/cmake/build.cmake:540 (message):
+  ERROR: A problem was found in the manifest file
+  C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main\idf_component.yml:
+
+  Version specifications for "esp_driver_i2c" are invalid.
+
+  
+
+  SUGGESTION: This component may be using a newer version of the component
+  manager.
+
+  You can try to update the component manager by running:
+
+      D:\Espressif\python_env\idf5.1_py3.11_env\Scripts\python.exe -m pip install --upgrade idf-component-manager
+
+  
+
+Call Stack (most recent call first):
+  D:/Espressif/frameworks/esp-idf-v5.1.2/tools/cmake/project.cmake:547 (idf_build_process)
+  CMakeLists.txt:6 (project)
+
+
+ninja: error: rebuilding 'build.ninja': subcommand failed
