@@ -1,0 +1,89 @@
+[0;33m--- esp-idf-monitor 1.3.4 on com26 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0;33m0x4201fb4d: ctc_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:265
+[0m
+[0;33m0x4202012c: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:590
+[0m
+[0;33m0x42020135: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:588
+[0m
+[0;33m0x4201fb4a: ctc_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:265
+[0m
+[0;33m0x42020073: _ctc_beams_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:564 (discriminator 3)
+[0m
+[0;33m0x42020106: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:578
+[0m
+[0;33m0x4201c25f: ctc_inverse_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1263
+ (inlined by) beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1380
+ (inlined by) decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1489
+[0m
+[0;33m0x4201c7c5: decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1424
+ (inlined by) model_detect at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1647
+[0m
+[0;33m0x42009bd5: detect_Task at C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/main.c:259
+[0m
+[0;33m0x40383a79: vPortTaskWrapper at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:162
+[0m
+[0;33m0x4038666c: insert_free_block at D:/Espressif/frameworks/esp-idf-v5.1.2/components/heap/tlsf/tlsf.c:370
+ (inlined by) block_insert at D:/Espressif/frameworks/esp-idf-v5.1.2/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at D:/Espressif/frameworks/esp-idf-v5.1.2/components/heap/tlsf/tlsf.c:1123
+[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0;33m0x4201fb4d: ctc_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:265
+[0m
+[0;33m0x4202012c: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:590
+[0m
+[0;33m0x42020135: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:588
+[0m
+[0;33m0x4201fb4a: ctc_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:265
+[0m
+[0;33m0x42020073: _ctc_beams_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:564 (discriminator 3)
+[0m
+[0;33m0x42020106: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:578
+[0m
+[0;33m0x4201c25f: ctc_inverse_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1263
+ (inlined by) beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1380
+ (inlined by) decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1489
+[0m
+[0;33m0x4201c7c5: decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1424
+ (inlined by) model_detect at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1647
+[0m
+[0;33m0x42009bd5: detect_Task at C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/main.c:259
+[0m
+[0;33m0x40383a79: vPortTaskWrapper at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:162
+[0m
+[0;33m0x40386480: block_is_free at D:/Espressif/frameworks/esp-idf-v5.1.2/components/heap/tlsf/tlsf_block_functions.h:36
+ (inlined by) block_merge_next at D:/Espressif/frameworks/esp-idf-v5.1.2/components/heap/tlsf/tlsf.c:483
+ (inlined by) tlsf_free at D:/Espressif/frameworks/esp-idf-v5.1.2/components/heap/tlsf/tlsf.c:1122
+[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0;33m0x4201f42e: rnnt_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/rnnt_decoder.c:343
+[0m
+[0;33m0x4202fe0c: dl_nn_log_softmax_i16 at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/dl_lib/nn/dl_nn_math.c:334
+[0m
+[0;33m0x4202fe1a: dl_nn_log_softmax_i16 at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/dl_lib/nn/dl_nn_math.c:333 (discriminator 2)
+[0m
+[0;33m0x4201f42b: rnnt_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/rnnt_decoder.c:336
+[0m
+[0;33m0x4201c06b: beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1308
+ (inlined by) decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1489
+[0m
+[0;33m0x4201c4ad: decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1424
+ (inlined by) model_detect at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1562
+[0m
+[0;33m0x42009bd5: detect_Task at C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/main.c:259
+[0m
+[0;33m0x40383a79: vPortTaskWrapper at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:162
+[0m
+[0;33m0x4037b0fc: _xt_lowint1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/xtensa_vectors.S:1203
+[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0m

@@ -1,0 +1,32 @@
+[0;33m--- esp-idf-monitor 1.3.4 on com26 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0;33m0x4201fb51: ctc_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:265
+[0m
+[0;33m0x42020134: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:590
+[0m
+[0;33m0x4202013d: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:588
+[0m
+[0;33m0x4201fb4e: ctc_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:265
+[0m
+[0;33m0x4202007b: _ctc_beams_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:564 (discriminator 3)
+[0m
+[0;33m0x4202010e: ctc_decode_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/ctc_decoder.c:578
+[0m
+[0;33m0x4201c267: ctc_inverse_beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1263
+ (inlined by) beam_search_with_fst at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1380
+ (inlined by) decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1489
+[0m
+[0;33m0x4201c7cd: decoder_joiner_run at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1424
+ (inlined by) model_detect at /home/sunxiangyu/workspace/esp_sr_lib/build/../components/multinet/multinet6_quantized.c:1647
+[0m
+[0;33m0x42009bd5: detect_Task at C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/main.c:259
+[0m
+[0;33m0x40383a79: vPortTaskWrapper at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:162
+[0m
+[0;33m0x4038419a: _xt_context_save at D:/Espressif/frameworks/esp-idf-v5.1.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/xtensa_context.S:194
+[0m
+[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
+[0m
+[0m

@@ -1,6 +1,7 @@
 set(srcs
     main.c
     src/hardDevInit.c
+    src/moduleFunc.c
     )
 
 set(requires

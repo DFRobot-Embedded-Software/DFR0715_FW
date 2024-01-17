@@ -3,6 +3,8 @@
         "harddevinit.h": "c",
         "main.h": "c",
         "esp_process_sdkconfig.h": "c",
-        "esp_codec_dev_defaults.h": "c"
+        "esp_codec_dev_defaults.h": "c",
+        "modulefunc.h": "c",
+        "esp_mn_speech_commands.h": "c"
     }
 }

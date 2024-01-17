@@ -10,17 +10,31 @@
  */
 #pragma once
 
+#include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 #include "esp_err.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "driver/i2c.h"
 #include "driver/i2s_std.h"
+
 // #include "es7243e.h"
 #include "esp_codec_dev.h"
 #include "esp_codec_dev_defaults.h"
 #include "esp_codec_dev_os.h"
+
+#include "esp_mn_speech_commands.h"
+#include "esp_process_sdkconfig.h"
+#include "esp_wn_iface.h"
+#include "esp_wn_models.h"
+#include "esp_afe_sr_iface.h"
+#include "esp_afe_sr_models.h"
+#include "esp_mn_iface.h"
+#include "esp_mn_models.h"
+#include "model_path.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -56,6 +70,9 @@ extern "C" {
 #define MODULE_DFR0715_PID       0x42CB   ///< Sensor PID
 #define MODULE_DFR0715_VID       0x3343   ///< Sensor VID
 #define MODULE_DFR0715_VERSION   0x0100   ///< Sensor VERSION
+
+extern esp_mn_iface_t* multinet;
+extern model_iface_data_t* model_data;
 
 
 #ifdef __cplusplus

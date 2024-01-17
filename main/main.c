@@ -19,31 +19,15 @@
  * @date  2023-12-22
  * @url  https://github.com/DFRobot-Embedded-Software/DFR0715_FW
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
 
 #include "main.h"
 #include "hardDevInit.h"
+#include "moduleFunc.h"
 
-#include "esp_mn_speech_commands.h"
-#include "esp_process_sdkconfig.h"
-#include "esp_wn_iface.h"
-#include "esp_wn_models.h"
-#include "esp_afe_sr_iface.h"
-#include "esp_afe_sr_models.h"
-#include "esp_mn_iface.h"
-#include "esp_mn_models.h"
-#include "model_path.h"
-
-static volatile uint8_t key_flag = 0;
-static uint8_t comm_mode_flag = COMM_MODE_UART;
-
-uint8_t reg_buf[6] = { 0xff, 5, 0 , 0 };
-
+ // 语音模型相关句柄
 srmodel_list_t* models = NULL;
 static esp_afe_sr_iface_t* afe_handle = NULL;
 static esp_afe_sr_data_t* afe_data = NULL;
@@ -51,99 +35,15 @@ static esp_afe_sr_data_t* afe_data = NULL;
 esp_mn_iface_t* multinet;
 model_iface_data_t* model_data;
 
-int detect_flag = 0;
-static volatile int model_task_flag = 0;
+// 按键标志
+static volatile uint8_t key_flag = 0;
 
-uint8_t addTempID = 0;
-uint8_t delTempID = 0;
-char addTempStr[128] = { 0 };
-char delTempStr[128] = { 0 };
-uint8_t longComID = 0;
-char handLongpStr[128] = { 0 };
+// 语音检测相关
+static volatile int detect_flag = 0;
+static volatile int model_task_flag = 0;
 
 static void detect_Task(void* arg);
 static void feed_Task(void* arg);
-
-void dfr0715_multinet_init(void)
-{
-    // 从模型列表中筛选出与中文多关键词网络相关的模型名称。
-    // char* mn_name = esp_srmodel_filter(models, ESP_MN_PREFIX, ESP_MN_ENGLISH);
-    // printf("multinet:%s\n", mn_name);
-    // char* mn_name = "mn5q8_cn";
-    char* mn_name = "mn6_cn";
-    if (MODEL_TYPE_EN == reg_buf[MODEL_TYPE_REG]) {
-        // mn_name = "mn5q8_en";
-        mn_name = "mn6_en";
-    }
-
-    // 使用选定的模型名称创建多关键词网络接口 esp_mn_iface_t。
-    multinet = esp_mn_handle_from_name(mn_name);
-    // 通过 multinet->create 创建多关键词网络模型实例，并设置唤醒持续时间  ms
-    if (model_data) {   // 防止之前创建的实例未销毁
-        multinet->destroy(model_data);
-        model_data = NULL;
-    }
-    if (6 >= reg_buf[WAKEUP_TIME_REG]) {   // 6s 下限
-        model_data = multinet->create(mn_name, 6000);
-    } else if (120 <= reg_buf[WAKEUP_TIME_REG]) {   // 目前测试最大支持 134s
-        model_data = multinet->create(mn_name, 120000);
-    } else {
-        model_data = multinet->create(mn_name, reg_buf[WAKEUP_TIME_REG] * 1000);
-    }
-
-    // Add speech commands from sdkconfig
-    // esp_mn_commands_update_from_sdkconfig(multinet, model_data);
-    esp_mn_commands_alloc(multinet, model_data);
-    // esp_mn_commands_clear();                       // Clear commands that already exist 
-    // esp_mn_commands_add(1, "da kai deng guang");   // add a command
-    // esp_mn_commands_add(1, "turn on the light");   // add a command
-    // esp_mn_commands_add(2, "turn off the light");  // add a command
-    // esp_mn_commands_update();                      // update commands
-
-    //print active speech commands
-    // esp_mn_commands_print();
-    // multinet->print_active_speech_commands(model_data);
-}
-
-void comm_reply(uint8_t* buf, uint8_t size)
-{
-    if (COMM_MODE_UART == comm_mode_flag) {
-        uart_write_bytes(UART_PORT_NUM, buf, size);
-        uart_wait_tx_done(UART_PORT_NUM, 10);   // 确保 uart 发送完成
-    } else {
-        // i2c_reset_tx_fifo(I2C_SLAVE_NUM);
-        uint8_t temp_buf[10] = { 0xFF };
-        strlcat((char*)temp_buf, (char*)buf, sizeof(temp_buf));   // 无效第一个可能是错误数据的字节
-        i2c_slave_write_buffer(I2C_SLAVE_NUM, temp_buf, size + 1, 10 / portTICK_PERIOD_MS);
-    }
-}
-
-void long_command_handle(uint8_t id, uint8_t* data)   // 长命令词处理
-{
-    if (longComID != id) {   // 如果和 上一次 不是 同一个id
-        longComID = id;
-        memset(handLongpStr, 0, strlen(handLongpStr));
-    }
-    // printf("strlen((char *)(data + 1)) = %u\n", strlen((char*)(data + 1)));
-    strlcat(handLongpStr, (char*)(data + 1), sizeof(handLongpStr));   // 拼接字符串
-    // printf("strlen(handLongpStr) = %u\n", strlen(handLongpStr));
-    if (strlen(handLongpStr) == data[0]) {   // 命令词"完整" (长度正确)
-        reg_buf[CMD_ERROR_REG] = ESP_OK;
-        if (0xFF == id) {   // 删除命令词
-            esp_mn_commands_remove(handLongpStr);  // remove a command
-        } else if (0 != id) {   //添加命令词
-            esp_mn_commands_add(id, handLongpStr);  // add a command
-        }
-        memset(handLongpStr, 0, strlen(handLongpStr));
-        longComID = 0;
-    } else if (strlen(handLongpStr) >= 127) {
-        reg_buf[CMD_ERROR_REG] = longComID;
-        memset(handLongpStr, 0, strlen(handLongpStr));   // 放弃
-        longComID = 0;
-    } else {   // 命令词没有完成添加
-        reg_buf[CMD_ERROR_REG] = longComID;
-    }
-}
 
 /**
  * @brief 和主机通信数据的解析
@@ -181,13 +81,16 @@ void annysis_command(uint8_t* data, size_t size)
     case CMD_WRITE_REGBUF:
         if ((reg != 0x00) && ((reg + len) <= MODEL_TYPE_REG + 1)) {   // 防止uart数据不完整
             memcpy(&reg_buf[reg], &data[3], len);
+
             reg_buf[VOICE_ID_REG] = 0xFF;   // 退出后重置 语音识别ID的寄存器
             afe_handle->enable_wakenet(afe_data);
             detect_flag = 0;
             gpio_set_level(GPIO_LED, 0);
             vTaskDelay(10 / portTICK_PERIOD_MS);
+
             model_task_flag = 0;   // 退出之前初始化模型的语音检测任务
             vTaskDelay(100 / portTICK_PERIOD_MS);
+
             dfr0715_multinet_init();
             model_task_flag = 1;
             xTaskCreatePinnedToCore(&feed_Task, "feed", 8 * 1024, (void*)afe_data, 5, NULL, 0);
@@ -197,58 +100,28 @@ void annysis_command(uint8_t* data, size_t size)
             // printf("size = %u, len = %u\n", size, len);
             printf("------------ADD_CMD_REG------------");
             printf("id = %u; length = %u; str = %s\n", data[3], data[4], (char*)(&data[5]));
-            // 超长命令词
-            // if (addTempID != data[3]) {   // 如果不是上个id
-            //     addTempID = data[3];
-            //     memset(addTempStr, 0, strlen(addTempStr));
-            // }
-            // // printf("strlen((char *)(&data[5])) = %u\n", strlen((char*)(&data[5])));
-            // strlcat(addTempStr, (char*)(&data[5]), sizeof(addTempStr));
-            // // printf("strlen(addTempStr) = %u\n", strlen(addTempStr));
-            // if (strlen(addTempStr) == data[4]) {   // 命令词完整
-            //     reg_buf[CMD_ERROR_REG] = ESP_OK;
-            //     esp_mn_commands_add(data[3], addTempStr);  // add a command
-            //     memset(addTempStr, 0, strlen(addTempStr));   // 如果成功添加
-            //     addTempID = 0;
-            // } else if (strlen(addTempStr) > 127) {
-            //     memset(addTempStr, 0, strlen(addTempStr));   // 放弃
-            //     reg_buf[CMD_ERROR_REG] = 0xFF;
-            //     addTempID = 0;
-            // } else {   // 命令词没有完成添加
-            //     reg_buf[CMD_ERROR_REG] = ADD_CMD_REG;
-            // }
+
             long_command_handle(data[3], data + 4);
         } else if (DEL_CMD_BY_ID_REG == reg) {
-            char* p = esp_mn_commands_get_string(data[3]);
-            if (NULL != p) {
-                esp_mn_commands_remove(p);
+            if (0 != data[3]) {
+                char* p = esp_mn_commands_get_string(data[3]);
+                if (NULL != p) {
+                    esp_mn_commands_remove(p);
+                }
+            } else {   // 删除id为零时, 清空所有命令词
+                esp_mn_commands_clear();
             }
         } else if (DEL_CMD_BY_STR_REG == reg) {
             printf("------------DEL_CMD_BY_STR_REG------------");
             printf("length = %u; str = %s\n", data[3], (char*)(&data[4]));
-            // strlcat(delTempStr, (char*)(&data[4]), sizeof(delTempStr));
-            // if (strlen(delTempStr) == data[3]) {   // 命令词完整
-            //     reg_buf[CMD_ERROR_REG] = ESP_OK;
-            //     esp_mn_commands_remove(delTempStr);  // remove a command
-            //     memset(delTempStr, 0, strlen(delTempStr));   // 如果成功清除
-            // } else if (strlen(delTempStr) > 127) {
-            //     memset(delTempStr, 0, strlen(delTempStr));   // 放弃
-            //     reg_buf[CMD_ERROR_REG] = 0xFF;
-            // } else {   // 命令词没有完成删除
-            //     reg_buf[CMD_ERROR_REG] = DEL_CMD_BY_STR_REG;
-            // }
             long_command_handle(0xFF, data + 3);
-            // if (ESP_OK != esp_mn_commands_remove((char*)(&data[3]))) {   // 是长命令词
-            //     strcat(delTempStr, (char*)(&data[3]));
-            //     if (ESP_OK == esp_mn_commands_remove(delTempStr)) {
-            //         memset(delTempStr, 0, strlen(delTempStr));   // 如果成功清除
-            //     }
-            // }
         }
-        esp_mn_commands_update();                      // update commands
+        if (0 == detect_flag) {   // 唤醒模式下不能更新命令词
+            esp_mn_commands_update();                      // update commands
+        }
         // DBG
         // esp_mn_commands_print();   // 在列表中的
-        esp_mn_active_commands_print();   // 在模型中的
+        // esp_mn_active_commands_print();   // 在模型中的
         break;
     default:
         break;
@@ -275,10 +148,10 @@ static void gpio_task(void* arg)
 
     for (;;) {
         if (key_flag) {
-            // printf("[%d] gpio_task--------!\n", gpio_get_level(GPIO_KEY));
             if (model_task_flag) {
                 multinet->clean(model_data);  // clean all status of multinet
                 detect_flag = 1;
+
                 gpio_set_level(GPIO_LED, 1);
                 reg_buf[VOICE_ID_REG] = 0;   // 更新寄存器
                 key_flag = 0;
@@ -324,17 +197,6 @@ static void communication_task(void* arg)
             size_t r_size = i2c_slave_read_buffer(I2C_SLAVE_NUM, data_rd, 32, 10 / portTICK_PERIOD_MS);
             // i2c_reset_rx_fifo(I2C_SLAVE_NUM);
             if (r_size > 0) {
-                // if (data_rd[1] == 0xAA) {  // Assuming 0x00 is the register address for read operation
-                //     i2c_reset_tx_fifo(I2C_SLAVE_NUM);
-                //     data_wr[0] = data_rd[0];
-                //     data_wr[1] = data_rd[1];
-                //     i2c_slave_write_buffer(I2C_SLAVE_NUM, data_wr, 2, 100 / portTICK_PERIOD_MS);
-                //     // printf("Sending register value: %02X\n", data_rd[0]);
-                //     // printf("Sending register value: %02X\n", data_rd[1]);
-                //     // size_t w_size = i2c_slave_write_buffer(I2C_SLAVE_NUM, data_rd, 64, 1000 / portTICK_PERIOD_MS);
-                // } else {
-                //     // printf("Invalid register address received\n");
-                // }
                 // i2c_reset_tx_fifo(I2C_SLAVE_NUM);
                 annysis_command(data_rd, r_size);
             }
@@ -342,23 +204,11 @@ static void communication_task(void* arg)
             vTaskDelay(10 / portTICK_PERIOD_MS);
         }
     }
-    vTaskDelete(NULL);
-}
-
-static void get_feed_data(bool is_get_raw_channel, int16_t* buffer, int buffer_len)
-{
-    // size_t bytes_read;
-    int audio_chunksize = buffer_len / (sizeof(int16_t) * ADC_I2S_CHANNEL);
-
-    ESP_ERROR_CHECK(esp_codec_dev_read(record_dev, (void*)buffer, buffer_len));
-    if (!is_get_raw_channel) {
-        for (int i = 0; i < audio_chunksize; i++) {
-            int16_t ref = buffer[4 * i + 0];
-            buffer[3 * i + 0] = buffer[4 * i + 1];
-            buffer[3 * i + 1] = buffer[4 * i + 3];
-            buffer[3 * i + 2] = ref;
-        }
+    if (data_rd) {
+        free(data_rd);
+        data_rd = NULL;
     }
+    vTaskDelete(NULL);
 }
 
 static void feed_Task(void* arg)
@@ -366,7 +216,6 @@ static void feed_Task(void* arg)
     esp_afe_sr_data_t* afe_data = arg;
     int audio_chunksize = afe_handle->get_feed_chunksize(afe_data);   // 获取音频块的大小
     int nch = afe_handle->get_channel_num(afe_data);   // 获取音频通道的数量
-    // printf("nch:%d\n", nch);
     int feed_channel = ADC_I2S_CHANNEL;   // 获取用于喂养（feed）的音频通道数目
     assert(nch <= feed_channel);
     int16_t* i2s_buff = malloc(audio_chunksize * sizeof(int16_t) * feed_channel);
@@ -412,9 +261,7 @@ static void detect_Task(void* arg)
 
         if (detect_flag == 1) {
             // 检测是否有符合多关键词网络的 词
-            printf("1\n");
             esp_mn_state_t mn_state = multinet->detect(model_data, res->data);
-            printf("2\n");
 
             if (mn_state == ESP_MN_STATE_DETECTING) {
                 continue;
@@ -431,8 +278,8 @@ static void detect_Task(void* arg)
             }
 
             if (mn_state == ESP_MN_STATE_TIMEOUT) {
-                // esp_mn_results_t* mn_result = multinet->get_results(model_data);
-                // printf("timeout, string:%s\n", mn_result->string);
+                esp_mn_results_t* mn_result = multinet->get_results(model_data);
+                printf("timeout, string:%s\n", mn_result->string);
                 if (0 != reg_buf[WAKEUP_TIME_REG]) {   // 如果唤醒时长设置为零, 要求持续唤醒
                     reg_buf[VOICE_ID_REG] = 0xFF;   // 退出后重置 语音识别ID的寄存器
                     afe_handle->enable_wakenet(afe_data);

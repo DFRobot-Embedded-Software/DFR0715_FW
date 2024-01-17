@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "DFR0715_FW",
-    "project_version":    "1",
+    "project_version":    "4fe8054-dirty",
     "project_path":       "C:/Users/pc/Desktop/DFR0715/DFR0715_FW",
     "idf_path":           "D:/Espressif/frameworks/esp-idf-v5.1.2",
     "build_dir":          "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build",
@@ -835,7 +835,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__esp-sr", "espressif__esp_codec_dev" ],
             "file": "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/main.c", "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/src/hardDevInit.c" ],
+            "sources": [ "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/main.c", "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/src/hardDevInit.c", "C:/Users/pc/Desktop/DFR0715/DFR0715_FW/main/src/moduleFunc.c" ],
             "include_dirs": [ "inc" ]
         },
         "mbedtls": {
