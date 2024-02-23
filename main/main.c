@@ -312,7 +312,9 @@ void app_main(void)
     afe_handle = (esp_afe_sr_iface_t*)&ESP_AFE_SR_HANDLE;
     // 设置默认配置，包括内存分配模式、是否初始化唤醒词模型、唤醒词模型的名称等。
     afe_config_t afe_config = AFE_CONFIG_DEFAULT();
-    afe_config.wakenet_model_name = esp_srmodel_filter(models, ESP_WN_PREFIX, NULL);;
+    // afe_config.wakenet_model_name = esp_srmodel_filter(models, ESP_WN_PREFIX, NULL);
+    afe_config.wakenet_model_name = "wn9_hiesp";
+    afe_config.wakenet_model_name_2 = "wn9_hilexin";
     afe_config.memory_alloc_mode = AFE_MEMORY_ALLOC_MORE_PSRAM;
     afe_config.wakenet_init = true;
     afe_config.voice_communication_init = false;

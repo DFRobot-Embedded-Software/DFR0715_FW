@@ -1,8 +1,0 @@
-[0;33m--- esp-idf-monitor 1.3.4 on com26 115200 ---[0m
-[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
-[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
-[0m
-[0;33m0x40379594: call_start_cpu1 at D:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_system/port/cpu_start.c:157
-[0m
-[0;33mWarning: checksum mismatch between flashed and built applications. Checksum of built application is af898d98249842a4364a6fa28f503720a05af6a5b199369076cfd6f1201d2c8b[0m
-[0m

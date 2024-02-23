@@ -65,11 +65,11 @@ void long_command_handle(uint8_t id, uint8_t* data)
     strlcat(handLongpStr, (char*)(data + 1), sizeof(handLongpStr));   // 拼接字符串
     // printf("strlen(handLongpStr) = %u\n", strlen(handLongpStr));
     if (strlen(handLongpStr) == data[0]) {   // 命令词"完整" (长度正确)
-        reg_buf[CMD_ERROR_REG] = ESP_OK;
+        // reg_buf[CMD_ERROR_REG] = ESP_OK;
         if (0xFF == id) {   // 删除命令词
-            esp_mn_commands_remove(handLongpStr);  // remove a command
+            reg_buf[CMD_ERROR_REG] = esp_mn_commands_remove(handLongpStr);  // remove a command
         } else if (0 != id) {   //添加命令词
-            esp_mn_commands_add(id, handLongpStr);  // add a command
+            reg_buf[CMD_ERROR_REG] = esp_mn_commands_add(id, handLongpStr);  // add a command
         }
         memset(handLongpStr, 0, strlen(handLongpStr));
         longComID = 0;
