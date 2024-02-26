@@ -10,7 +10,7 @@ char handLongpStr[128] = { 0 };
 
 // 与用户主控通信
 uint8_t comm_mode_flag = COMM_MODE_UART;
-uint8_t reg_buf[6] = { 0xff, 5, 0 , 0 };
+uint8_t reg_buf[6] = { 0xff, 10, 0 , 0 };
 
 void dfr0715_multinet_init(void)
 {

@@ -35,6 +35,10 @@ static esp_afe_sr_data_t* afe_data = NULL;
 esp_mn_iface_t* multinet;
 model_iface_data_t* model_data;
 
+// task 句柄
+TaskHandle_t feedTaskHandle = NULL;
+TaskHandle_t detectTaskHandle = NULL;
+
 // 按键标志
 static volatile uint8_t key_flag = 0;
 
@@ -55,11 +59,19 @@ static void feed_Task(void* arg);
  */
 void annysis_command(uint8_t* data, size_t size)
 {
+    uint8_t error_buf[] = { 0xFE, 0xFF };
     uint8_t type = data[0];
     uint8_t reg = data[1];
     uint8_t len = data[2];
+
     switch (type) {
     case CMD_READ_REGBUF: {
+        if (3 != size) {   // 读指令只包含type, reg, len 3个字节；若不是，则数据帧有误，舍弃
+            // if (COMM_MODE_UART == comm_mode_flag) {   // 当为串口模式 i2c模式库接口写死，不会出现该问题
+            comm_reply(error_buf, 2);
+            // }
+            break;
+        }
         if ((reg + len) <= CMD_ERROR_REG + 1) {
             // printf("reg_buf[%u] = %u; len = %u\n", reg, reg_buf[reg], len);
             comm_reply(&reg_buf[reg], len);
@@ -70,15 +82,35 @@ void annysis_command(uint8_t* data, size_t size)
                 // reg_buf[CMD_ERROR_REG] = 0;   // 读取后重置
                 longComID = 0;
             }
-        } else {
-            uint8_t buf[2] = { 0 };
-            buf[0] = MODULE_DFR0715_PID & 0xFF;
-            buf[1] = (MODULE_DFR0715_PID >> 8) & 0xFF;
+        } else if(2 == len) {
+            uint8_t buf[2] = { 0xFF, 0xFF };
+            switch (reg) {   // 模块基本信息, 单个回复
+            case REG_ISR_PID:
+                buf[0] = (MODULE_DFR0715_PID >> 8) & 0xFF;   // MSB
+                buf[1] = MODULE_DFR0715_PID & 0xFF;   // LSB
+                break;
+            case REG_ISR_VID:
+                buf[0] = (MODULE_DFR0715_VID >> 8) & 0xFF;
+                buf[1] = MODULE_DFR0715_VID & 0xFF;
+                break;
+            case REG_ISR_VERSION:
+                buf[0] = (MODULE_DFR0715_VERSION >> 8) & 0xFF;
+                buf[1] = MODULE_DFR0715_VERSION & 0xFF;
+                break;
+
+            default:
+                break;
+            }
             comm_reply(buf, 2);
         }
         break;
     }
     case CMD_WRITE_REGBUF:
+        if (len + 3 != size) {   // 数据帧有误，舍弃
+            comm_reply(error_buf, 2);
+            break;
+        }
+
         if ((reg != 0x00) && ((reg + len) <= MODEL_TYPE_REG + 1)) {   // 防止uart数据不完整
             memcpy(&reg_buf[reg], &data[3], len);
 
@@ -89,12 +121,15 @@ void annysis_command(uint8_t* data, size_t size)
             vTaskDelay(10 / portTICK_PERIOD_MS);
 
             model_task_flag = 0;   // 退出之前初始化模型的语音检测任务
-            vTaskDelay(100 / portTICK_PERIOD_MS);
+            while ((eDeleted != eTaskGetState(feedTaskHandle)) || (eDeleted != eTaskGetState(detectTaskHandle))) {   // 未添加超时
+                printf(" . ");
+                vTaskDelay(10 / portTICK_PERIOD_MS);
+            }
 
             dfr0715_multinet_init();
             model_task_flag = 1;
-            xTaskCreatePinnedToCore(&feed_Task, "feed", 8 * 1024, (void*)afe_data, 5, NULL, 0);
-            xTaskCreatePinnedToCore(&detect_Task, "detect", 16 * 1024, (void*)afe_data, 5, NULL, 1);
+            xTaskCreatePinnedToCore(&feed_Task, "feed", 8 * 1024, (void*)afe_data, 5, &feedTaskHandle, 0);
+            xTaskCreatePinnedToCore(&detect_Task, "detect", 16 * 1024, (void*)afe_data, 5, &detectTaskHandle, 1);
 
         } else if (ADD_CMD_REG == reg) {
             // printf("size = %u, len = %u\n", size, len);
@@ -124,6 +159,7 @@ void annysis_command(uint8_t* data, size_t size)
         // esp_mn_active_commands_print();   // 在模型中的
         break;
     default:
+        comm_reply(error_buf, 2);   // 数据帧有误，舍弃
         break;
     }
     memset(data, 0, 64);   // 清除接收的信息
@@ -148,7 +184,7 @@ static void gpio_task(void* arg)
 
     for (;;) {
         if (key_flag) {
-            if (model_task_flag) {
+            if (model_task_flag) {   // 不能添加 && (0 == detect_flag) ，这样才能正常设置id寄存器，以及刷新唤醒持续时长
                 multinet->clean(model_data);  // clean all status of multinet
                 detect_flag = 1;
 
@@ -231,6 +267,7 @@ static void feed_Task(void* arg)
         free(i2s_buff);
         i2s_buff = NULL;
     }
+    printf("feed exit\n");
     vTaskDelete(NULL);
 }
 
@@ -295,7 +332,7 @@ static void detect_Task(void* arg)
         multinet->destroy(model_data);
         model_data = NULL;
     }
-    // printf("detect exit\n");
+    printf("detect exit\n");
     vTaskDelete(NULL);
 }
 
@@ -328,8 +365,8 @@ void app_main(void)
     dfr0715_multinet_init();
 
     model_task_flag = 1;
-    xTaskCreatePinnedToCore(&feed_Task, "feed", 8 * 1024, (void*)afe_data, 5, NULL, 0);
-    xTaskCreatePinnedToCore(&detect_Task, "detect", 16 * 1024, (void*)afe_data, 5, NULL, 1);
+    xTaskCreatePinnedToCore(&feed_Task, "feed", 8 * 1024, (void*)afe_data, 5, &feedTaskHandle, 0);
+    xTaskCreatePinnedToCore(&detect_Task, "detect", 16 * 1024, (void*)afe_data, 5, &detectTaskHandle, 1);
 
     xTaskCreate(gpio_task, "gpio_key", 4096, NULL, 4, NULL);
     xTaskCreate(communication_task, "communication", 4096, NULL, 4, NULL);
