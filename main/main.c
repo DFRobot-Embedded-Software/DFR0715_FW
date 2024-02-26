@@ -82,8 +82,8 @@ void annysis_command(uint8_t* data, size_t size)
                 // reg_buf[CMD_ERROR_REG] = 0;   // 读取后重置
                 longComID = 0;
             }
-        } else if(2 == len) {
-            uint8_t buf[2] = { 0xFF, 0xFF };
+        } else if (2 == len) {
+            uint8_t buf[2] = { 0xFE, 0xFF };
             switch (reg) {   // 模块基本信息, 单个回复
             case REG_ISR_PID:
                 buf[0] = (MODULE_DFR0715_PID >> 8) & 0xFF;   // MSB
@@ -102,6 +102,10 @@ void annysis_command(uint8_t* data, size_t size)
                 break;
             }
             comm_reply(buf, 2);
+        } else {
+            if (COMM_MODE_UART == comm_mode_flag) {
+                comm_reply(error_buf, 2);   // 数据帧有误，舍弃
+            }
         }
         break;
     }
@@ -130,6 +134,7 @@ void annysis_command(uint8_t* data, size_t size)
             model_task_flag = 1;
             xTaskCreatePinnedToCore(&feed_Task, "feed", 8 * 1024, (void*)afe_data, 5, &feedTaskHandle, 0);
             xTaskCreatePinnedToCore(&detect_Task, "detect", 16 * 1024, (void*)afe_data, 5, &detectTaskHandle, 1);
+            break;
 
         } else if (ADD_CMD_REG == reg) {
             // printf("size = %u, len = %u\n", size, len);
@@ -150,6 +155,11 @@ void annysis_command(uint8_t* data, size_t size)
             printf("------------DEL_CMD_BY_STR_REG------------");
             printf("length = %u; str = %s\n", data[3], (char*)(&data[4]));
             long_command_handle(0xFF, data + 3);
+        } else {
+            if (COMM_MODE_UART == comm_mode_flag) {
+                comm_reply(error_buf, 2);   // 数据帧有误，舍弃
+            }
+            break;
         }
         if (0 == detect_flag) {   // 唤醒模式下不能更新命令词
             esp_mn_commands_update();                      // update commands
@@ -159,7 +169,9 @@ void annysis_command(uint8_t* data, size_t size)
         // esp_mn_active_commands_print();   // 在模型中的
         break;
     default:
-        comm_reply(error_buf, 2);   // 数据帧有误，舍弃
+        if (COMM_MODE_UART == comm_mode_flag) {
+            comm_reply(error_buf, 2);   // 数据帧有误，舍弃
+        }
         break;
     }
     memset(data, 0, 64);   // 清除接收的信息
